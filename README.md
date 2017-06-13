@@ -35,9 +35,9 @@ The following resources should be created:
 - deploymentconfig "node-js-getting-started"
 - service "node-js-getting-started"
 
-A route has to be created manually in order to expose the service. With the following command a route with edge TLS termination will be created.
+A route has to be created manually in order to expose the service. With the following command a route (node-js-getting-started-route) with edge TLS termination will be created for the service node-js-getting-started.
 
 ```sh
-$ oc create route edge my-route --service=node-js-getting-started
+$ oc create route edge node-js-getting-started-route --service=node-js-getting-started
 ```
 
