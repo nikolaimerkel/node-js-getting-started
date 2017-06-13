@@ -29,10 +29,10 @@ $ oc new-app https://github.com/nikolaimerkel/node-js-getting-started
 - Other containers can access this service through the hostname "node-js-getting-started"
 
 The following resources should be created:
-- imagestream "node" 
-- imagestream "node-js-getting-started" 
-- buildconfig "node-js-getting-started" 
-- deploymentconfig "node-js-getting-started" 
+- imagestream "node" (The input image. Also called builder image)
+- imagestream "node-js-getting-started" (The output image) 
+- buildconfig "node-js-getting-started" (Specifies docker as the strategy for building, this location https://github.com/nikolaimerkel/node-js-getting-started.git containing the sources to use and that the build output will be the ImageStreamTag *node-js-getting-started:latest*)
+- deploymentconfig "node-js-getting-started"
 - service "node-js-getting-started"
 
 A route has to be created manually in order to expose the service.
