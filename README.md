@@ -14,3 +14,25 @@ $ docker run -it -p 8080:8080 merkel/nodejs
 ```
 
 Your app should now be running on [localhost:8080](http://localhost:8080/).
+
+## Running on OpenShift
+```sh
+$ oc new-app https://github.com/nikolaimerkel/node-js-getting-started
+```
+
+- An image stream will be created as "node:boron" that will track the source image
+- A Docker build using source code from https://github.com/nikolaimerkel/node-js-getting-started will be created
+  - The resulting image will be pushed to image stream "node-js-getting-started:latest"
+  Every time "node:boron" changes a new build will be triggered
+  - This image will be deployed in deployment config "node-js-getting-started"
+- Port 8080 will be load balanced by service "node-js-getting-started"
+- Other containers can access this service through the hostname "node-js-getting-started"
+
+The following resources should be created:
+- imagestream "node" 
+- imagestream "node-js-getting-started" 
+- buildconfig "node-js-getting-started" 
+- deploymentconfig "node-js-getting-started" 
+- service "node-js-getting-started"
+
+A route has to be created manually in order to expose the service.
